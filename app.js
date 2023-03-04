@@ -7,61 +7,42 @@ let wordsDiv = document.querySelector(".words");
 let sentencesDiv = document.querySelector(".sentences");
 let numbersDiv = document.querySelector(".numbers");
 
-
-let spanLetters =document.querySelector('.letters span');
-let spanWords=document.querySelector('.words span');
-let spanSentences =document.querySelector('.sentences span');
-let spanNumbers =document.querySelector('.numbers span');
+let spanLetters = document.querySelector('.letters span');
+let spanWords = document.querySelector('.words span');
+let spanSentences = document.querySelector('.sentences span');
+let spanNumbers = document.querySelector('.numbers span');
 
 btnCheck.addEventListener("click", function (e) {
-  let text = document.querySelector("textarea").value;
+    let text = document.querySelector("textarea").value;
+    if (text == "") return;
+        
 
-  let itemsArr = text.split("");
-  let wordsArr = text.split(" ");
-  let sentencesArr = text.split(".");
+    let countLetters = 0;
+    let countWords = 1;
+    let countSentences = 0;
+    let countNumbers = 0;
 
-  let countLetters = 0;
-  let countWords = 1;
-  let countSentences = 0;
-  let countNumbers = 0;
 
-  if (text == "") {
-    return;
-  }
+    let textArr = text.split('');
 
-  let regexpLetters = /[a-zA-Z]/g;
-  let regexpNumbers = /[0-9]/g;
+    // Letters,Words,Sentences,Numbers
+    let symbols = ['?', ':', ".", "!"];
+    let numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+    let forWordsArr = [',', ' '];
+    let forSentencesArr = ['?', '!', '.', "\n"];
+    for (let i = 0; i < textArr.length; i++) {
+        if (!symbols.includes(textArr[i]) && !numbers.includes(textArr[i])) countLetters++;
+        if (forWordsArr.includes(textArr[i])) countWords++;
 
-  for (let i = 0; i < wordsArr.length; i++) {}
-  for (let i = 0; i < itemsArr.length; i++) {
-    wordsArr[0].trimStart();
-    wordsArr[wordsArr.length - 1].trimEnd();
+        if (forSentencesArr.includes(textArr[i])) countSentences++;
 
-    if (itemsArr[i] == " " || itemsArr[i] == ",") {
-      countWords++;
+        if (numbers.includes(textArr[i])) countNumbers++
     }
-    if (itemsArr[i] == "\n" || itemsArr[i] == ".") {
-      countSentences++;
-    }
-  }
-
-  let lettersArr = text.match(regexpLetters);
-
-  if (lettersArr != null) countLetters = lettersArr.length;
-
-  let numbersArr = text.match(regexpNumbers);
-  if (numbersArr != null) countNumbers = numbersArr.length; //
-
-  spanLetters.innerText = countLetters;
-
-  spanWords.innerText = countWords;
-
-  spanSentences.innerText = countSentences;
-
-  spanNumbers.innerText = countNumbers;
-   
+    spanLetters.innerText = countLetters;
+    spanWords.innerText = countWords;
+    spanSentences.innerText = countSentences;
+    spanNumbers.innerText = countNumbers;
 });
-
 
 
 
