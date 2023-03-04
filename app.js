@@ -37,7 +37,7 @@ btnCheck.addEventListener("click", function (e) {
     wordsArr[0].trimStart();
     wordsArr[wordsArr.length - 1].trimEnd();
 
-    if (itemsArr[i] == " " || itemsArr[i] == ":") {
+    if (itemsArr[i] == " " || itemsArr[i] == ",") {
       countWords++;
     }
     if (itemsArr[i] == "\n" || itemsArr[i] == ".") {
