@@ -49,21 +49,15 @@ btnCheck.addEventListener("click", function (e) {
 // Generate background 
 const generateBtn = document.querySelector(".generateBtn");
 const body = document.querySelector("body");
-let colors = [
-  "lightyellow",
-  "aquamarine",
-  "palegreen",
-  "darkcyan",
-  'lightpink',
-  'lightsteelblue',
-  'lightred'
-];
+function getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }
 
 generateBtn.addEventListener("click", () => {
-  let indexColor = random(0, colors.length);
-  body.style.background = colors[indexColor];
+    body.style.background = getRandomColor();
 });
-
-function random(min, max) {
-  return Math.floor(Math.random() * (max - min) + min);
-}
